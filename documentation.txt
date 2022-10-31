@@ -1,0 +1,21 @@
+1. git init
+2. npm init
+3. Dependencias: npm install @babel/core babel-loader html-webpack-plugin webpack webpack-cli webpack-dev-server --save-dev
+
+NOTA: Despues de correr "npm run build" (Clase 5)
+	Para los que tienen el problema que tras correr el comando “npm run build” el arcivo main.js les queda igual que el archivo index.js aca esta el ¿por que?..
+		1)Tras la actualizacion a webpack 5 debemos instalar las siguientes dependdencias de babel: “npm install @babel/core babel-loader @babel/preset-env”.
+		2)Luego debemos generar en la raiz del proyecto el archivo “babel.config.json” alli debemos agregar lo siguiente:
+			{
+  			  "presets": [
+    			  "@babel/preset-env"
+  			  ]
+			}
+		3) Luego vamos al archivo "webpack.config.js y agregamos la siguiente regla:
+			{ // Estructura de Babel
+        		  test: /\.m?js$/, //Nos permite identificar los archivos según se encuentran en nuestro entorno.
+        		  exclude: /node_modules/, //Excluimos la carpeta de node modules
+        		  use: {
+          			loader: 'babel-loader',//Utilizar un loader como configuración establecida.
+          		  }
+      			}
